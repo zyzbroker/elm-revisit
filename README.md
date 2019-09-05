@@ -130,9 +130,9 @@ ELM calls update() when the runtime dispatches event messages. Here is update co
 update: msg model -> (Model, Cmd Msg)
 ```
 
-Inside your init() and update(), you can update Model and define a batch of command messages and return it.
+Inside your init() and update(), you can create/update Model Instance and define a batch of command messages and return it.
 
-The psudocodes is shown below:
+The pseudocodes are shown below:
 ```elm
 update msg model =  
   let 
