@@ -52,7 +52,7 @@ This is bootstrap function, where you instruct ELM runtime to do the following:
 * when your update or init has side effect, the runtime need to notify you by call your subscriptions.
 * after updates and side effects are completed, the ELM runtime calls your view to get your view definiton (**what**) and render your layout defintion to the web browser. 
 
-If the bootstrap can target HTML element, in this case, you want ELM runtime to render view inside that element. You need pass on that element node instance into init().
+If you want ELM runtime to render view inside that element. You need pass on that element node instance into init().
 
 ```elm
   main =
@@ -65,7 +65,7 @@ If the bootstrap can target HTML element, in this case, you want ELM runtime to 
 ```
 
 
-if you develop Single Page Application (SPA), you want to ELM runtime to render the whole page. Mightbe the page title and body are different for each page. In this case, you need to use Browser.application function.
+if you develop Single Page Application (SPA), you want the ELM runtime to render the whole page. Mightbe the page title and body are different for each page. In this case, you need to use Browser.application function.
 
 
 ```elm
