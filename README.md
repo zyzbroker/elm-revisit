@@ -92,10 +92,10 @@ type Msg
   |  SaveProfile
 ```
 
-SaveProfile is a function () -> Msg
-TransferMoney is a function (Int) -> Msg
+* SaveProfile is a function () -> Msg
+* TransferMoney is a function (Int) -> Msg
 
-that say you a button call "Save Profile" as shown here
+Let's say you have a button call "Save Profile" as shown here
 
 ```elm
 view model =
@@ -111,6 +111,8 @@ You need to initialize your application **state** (In React, you will initialize
 
 You might also call the backend API to preload data. (you might call this API in react component constructor).
 
+The function always returns a tuple of (AppState, Cmd Msg). In ELM, we use **Model** as Application State, we define Custom Type **Msg** as Messges that we ask **ELM** runtime to do.
+
 ##### Browser.element
 ```elm
 init: flags -> (Model, Cmd Msg)
@@ -122,6 +124,7 @@ init: url key -> (Model, Cmd Msg)
 ```
 
 #### update
+
 
 
 #### subscriptions
