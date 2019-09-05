@@ -124,10 +124,65 @@ init: url key -> (Model, Cmd Msg)
 ```
 
 #### update
+ELM calls update() when the runtime dispatches event messages. Here is update contract:
 
+```elm
+update: msg model -> (Model, Cmd Msg)
+```
+
+Inside your init() and update(), you can update Model and define a batch of command messages and return it.
+
+The psudocodes is shown below:
+```elm
+update msg model =  
+  let 
+    updateModel 
+      = { model 
+        | someState1 = Loading
+        , someState2 = Init }
+  in 
+    (updatedModel, Cmd.batch( task1, task2, task3, ...))
+```
+
+**note** in subscriptions() definition, you can also instruct the ELM runtime to dispatch the messages to your update() when your interested things happen.
 
 
 #### subscriptions
+In this function, you tell ELM runtime what side effect and interest that your app want to know when certain things happen.
 
+For example, you can use elm/time package every() function to tell ELM runtime to call your update() every second with the predefined message TimeUp.
+
+```elm
+type Msg 
+  = TimeUp
+
+subscriptions =
+  Time.every 1000 TimeUp
+```
+Note that you can batch multiple subscriptions.
+
+```elm
+type Msg 
+  = TimeUp
+  | TimeDown 
+
+subscriptions =
+  Sub.batch
+    ( Time.every 1000 TimeUp
+    , Time.every 6000 TimeDown)
+  
+```
 
 #### view
+ELM calls view() after update() and subscriptions() are called.
+
+```elm
+
+view: Model -> Html msg | Document msg
+
+```
+for Brower.element, the view() needs return Html msg. for Browser.application and Browser.document, the view() needs return Document msg. 
+
+In view(), you design UX layout and declare user interactions through ELM HTML elements like (div, span, etc.)
+
+## ELM SPA
