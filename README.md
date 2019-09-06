@@ -187,4 +187,71 @@ In view(), you design UX layout and declare user interactions through ELM HTML e
 
 ## SPA
 
+In ELM, there is not any router-specific package like **react-router**. Browser package exposes 3 functions that allow you to update browser without reloading.
 
+* Browser.element
+* Browser.document
+* Browser.application
+
+Browser.element and Browser.document does not provide browser navigation hook so that you can bind to them and take action based on the navigation event.
+
+You can craft navigation logic with them or crack the source codes to see how it is implemented. Nothing is wrong with it but not recommended.
+
+Browser.application exposes two browser history navigation related event to the developer.
+
+* **onUrlRequest**: UrlRequest -> msg
+* **onUrlChange**: Url -> msg
+
+When a hyperlink ```<a href="/somepath">somepath</a>``` is clicked, ELM runtime will raise onUrlRequest event, Your hooked implementation is called with the pass-in parameter UrlRequest, like preRoute event. 
+
+You do whatever you want to do, like saving current page screen scroll position, calling web service API, validate current form, etc. 
+
+And then you need to call  Browser.Navigation pushUrl to add the url entry in browser.history object. It dispatches **onUrlChange** event message to the update(). 
+
+Inside update(), you pattern-match your **onUrlChange** message to implement your next application logic based on the pass-in Url.
+
+>It is nice to have router package implemented to add an abstract layer so that the developers are not directly calling this lower-level API for routing purpose.
+
+## Some considations
+
+### OOD vs Functional Design
+
+From the **React.js** world, it is very easy to draw te boundary around UI layout. In addition, the highly encapsulated component model can store its' own **state**. The developers are happy with this simplicity but that might cause component out of sync or bug-prone. 
+
+The developers have to tackle the following issues:
+
+* state out of sync.
+* data mutability issue.
+* component life of cycle related issue.
+* javascript "this" reference issue.
+* code base sizing and code splitting.
+* concern too much at all level. 
+
+To solve aboved metioned issues, the developers has to turn 3rd party's libraries, such as 
+
+* Redux or MobX State Tree or Mobx
+* React-Router
+* React-Thunk or React-Saga (backend API integraiton)
+* React-Immutable
+* React-ReSelect to handle data set rendering 
+* Others,
+
+The moment when you add up all those 3rd party's library, your codebase might hit 1.5MB very easily.
+
+From the **ELM** world, the developer do not have these concerns due to the facts:
+
+* One truth of source, the application state (**Model**) at the main entry level
+* the state is immutable by nature
+* time travelling is by default
+* concern less. Only need to know **WHAT**
+* code base super tiny. code split not needed although you can do it.
+
+But we still have some concerns when using ELM:
+
+* it is a learning curve. anything is function. it is not easy to simulate the real-world knowledge, in which OOD is better.
+
+* It is message-driven centric.  In some way, the similarity is very high between ELM and Erlang/Elxir
+
+* The popularity is not on top rank although the principle and concept of ELM are very superb, Alibaba **dva.js**, **Redux** and some others borrow most idea of it.
+
+* The ELM 3rd party's libraris are not huge comparing with React.js, Andular, Vue.js. Thanks ELM core team to do the heavy lifting, we still can use the 3rd party JS libraries through ELM port. That is against of the ELM goal as declarative language.
