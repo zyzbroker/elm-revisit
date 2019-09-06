@@ -216,7 +216,7 @@ Inside update(), you pattern-match your **onUrlChange** message to implement you
 
 ### OOD vs Functional Design
 
-From the **React.js** world, it is very easy to draw te boundary around UI layout. In addition, the highly encapsulated component model can store its' own **state**. The developers are happy with this simplicity but that might cause component out of sync or bug-prone. 
+From the **React.js** world, it is very easy to draw the boundary around UI layout. In addition, the highly encapsulated component model can store its' own **state**. The developers are happy with this simplicity but that might cause component out of sync or bug-prone. 
 
 The developers have to tackle the following issues:
 
