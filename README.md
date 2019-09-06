@@ -254,4 +254,4 @@ But we still have some concerns when using ELM:
 
 * The popularity is not on top rank although the principle and concept of ELM are very superb, Alibaba **dva.js**, **Redux** and some others borrow most idea of it.
 
-* The ELM 3rd party's libraris are not huge comparing with React.js, Andular, Vue.js. Thanks ELM core team to do the heavy lifting, we still can use the 3rd party JS libraries through ELM port. That is against of the ELM goal as declarative language.
+* The ELM 3rd party's libraris are not huge comparing with React.js, Angular, Vue.js. Thanks ELM core team to do the heavy lifting, we still can use the 3rd party JS libraries through ELM port. That is against of the ELM goal as declarative language.
