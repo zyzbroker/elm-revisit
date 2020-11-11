@@ -148,7 +148,9 @@ update msg model =
 
 
 #### subscriptions
-In this function, you tell ELM runtime what side effect and interest that your app want to know when certain things happen.
+In this function, you tell ELM runtime what side effect and interest that your app want to know when certain things happen. In other words, any events that 
+are generates outside your program can be subscribed in this function, such as 
+window resize event.
 
 For example, you can use elm/time package every() function to tell ELM runtime to call your update() every second with the predefined message TimeUp.
 
